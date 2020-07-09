@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1181</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Emailmanager (version Mar 2020)</string>
+  </property>
+  <property name="toolTip">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="listWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1161</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectItems</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="closeButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>75</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Close</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1161</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="rowCount">
+     <number>0</number>
+    </property>
+    <property name="columnCount">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CSVButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>510</y>
+      <width>75</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>to .CSV</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>30</y>
+      <width>611</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="OKButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>75</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancelButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>510</y>
+      <width>75</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuRun">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionArchiveEmails"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionSet_default_folder"/>
+    <addaction name="actionDelete_logfile"/>
+    <addaction name="actionReset_nr_of_restarts"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_a_file"/>
+    <addaction name="actionLogFile"/>
+    <addaction name="actionOpen_zipped_emailfile"/>
+    <addaction name="actionOpen_emails_db"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionHow_the_program_works"/>
+    <addaction name="actionSQL_examples"/>
+    <addaction name="actionSQLite_Tutorial"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_2"/>
+   </widget>
+   <widget class="QMenu" name="menuGet_Emails">
+    <property name="title">
+     <string>Get Emails</string>
+    </property>
+    <addaction name="actionfrom_today_no_spam"/>
+    <addaction name="actionfrom_last_week_no_spam"/>
+    <addaction name="actionfrom_last_month_no_spam"/>
+    <addaction name="separator"/>
+    <addaction name="emails_from_today"/>
+    <addaction name="emails_from_last_week"/>
+    <addaction name="emails_from_last_month"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelect_Emails"/>
+    <addaction name="actionSelect_Emails_with_SQL"/>
+    <addaction name="actionwith_SQL"/>
+   </widget>
+   <addaction name="menuRun"/>
+   <addaction name="menuGet_Emails"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSet_default_folder">
+   <property name="text">
+    <string>Set default folder</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set default folder&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Sets default folder that will be opened when starting anywhere in this app&lt;/p&gt;&lt;p&gt;The name of the default folder - together with other parameters - are written&lt;/p&gt;&lt;p&gt;in de local file: C:/EmailManager/EmailManager.info&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionDelete_logfile">
+   <property name="text">
+    <string>Delete logfile</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete logfile&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The logfile written in C:/EmailManager/LogFile.txt  is deleted and a new empty one is created&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionReset_nr_of_restarts">
+   <property name="text">
+    <string>Reset nr of restarts</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset nr of restarts&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The number of restarts is reset to 1. &lt;/p&gt;&lt;p&gt;This number is read and increased with 1 when this application starts.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The number of restarts is used in the renaming of the .eml-files to tempfilenames. When the number of restarts = 88 the program wil first rename all the files to TEMPFILE-88-1.eml, TEMPFILE-88-2.eml, .... If the program has done this it will rename all the files to FILE1.eml, FILE2.eml,  ...&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;In case the program crashes halfway the renaming using a new restart-nr prevents the program creating an existing filename when trying to rename again because it now uses Number of restarts = 89, so the initially renamed files are TEMPFILE-89-1.eml, TEMPFILE-89-2.eml, ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionOpen_a_file">
+   <property name="text">
+    <string>Open a file</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open a file&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Opens (any) file in its default app. &lt;/p&gt;&lt;p&gt;So it can open an .eml-file in the mail-application, an .csv-file as a spreadsheet, a .pdf-file als an Acrobat file and a .mp4-file as a film&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionLogFile">
+   <property name="text">
+    <string>Open LogFile</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LogFile&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Opens the LogFile&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;The Logfile is a txt-file written as C:/EmailManager/Emailmanager.log&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionIntroduction">
+   <property name="text">
+    <string>Introduction</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionList">
+   <property name="text">
+    <string>List</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSet_default_folder_2">
+   <property name="text">
+    <string>Set default folder</string>
+   </property>
+  </action>
+  <action name="actionDelete_logfile_2">
+   <property name="text">
+    <string>Delete logfile</string>
+   </property>
+  </action>
+  <action name="actionReset_nr_of_restarts_2">
+   <property name="text">
+    <string>Reset nr of restarts</string>
+   </property>
+  </action>
+  <action name="actionOpen_a_file_2">
+   <property name="text">
+    <string>Open a file</string>
+   </property>
+  </action>
+  <action name="actionSelect_emails">
+   <property name="text">
+    <string>Select emails</string>
+   </property>
+  </action>
+  <action name="actionLogfile2">
+   <property name="text">
+    <string>Logfile</string>
+   </property>
+  </action>
+  <action name="actionRun_2">
+   <property name="text">
+    <string>Run</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run&lt;/p&gt;&lt;p&gt;1. rename all the .eml-files as FILE1.eml ... FILEN.eml&lt;/p&gt;&lt;p&gt;2. collects data from these renamed .eml-files&lt;/p&gt;&lt;p&gt;3. writes those data into SQLite database emails.db&lt;/p&gt;&lt;p&gt;4. puts all .eml-files into PythonEmails.zip file&lt;/p&gt;&lt;p&gt;5. deletes all .eml-files from folder&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionList_2">
+   <property name="text">
+    <string>List</string>
+   </property>
+  </action>
+  <action name="actionList_3">
+   <property name="text">
+    <string>List</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;1. Display attributes of .eml-files in folder&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionArchiveEmails">
+   <property name="text">
+    <string>Archive emails</string>
+   </property>
+   <property name="whatsThis">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select emails and&lt;/p&gt;&lt;p&gt;- write data into SQLite database EmailManager.db&lt;/p&gt;&lt;p&gt;- archive them into EmailManager.zip&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionOpenSQLiteStudio">
+   <property name="text">
+    <string>Open SQLite Studio</string>
+   </property>
+  </action>
+  <action name="actionHow_the_program_works">
+   <property name="text">
+    <string>User's Guide</string>
+   </property>
+  </action>
+  <action name="actionAbout_2">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionOpen_zipped_emailfile">
+   <property name="text">
+    <string>Open zipped emailfile</string>
+   </property>
+  </action>
+  <action name="actionOpen_emails_db">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Open emails.db database</string>
+   </property>
+  </action>
+  <action name="actionSelect_Emails">
+   <property name="text">
+    <string>from list</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program asks the name of a txt-file with the filenames of the wanted emails.&lt;/p&gt;&lt;p&gt;This filename should be something like &lt;/p&gt;&lt;p&gt;	'WantedEmails.txt'&lt;/p&gt;&lt;p&gt;and should look like:&lt;/p&gt;&lt;p&gt;	FILE1.eml&lt;/p&gt;&lt;p&gt;	FILE700.eml&lt;/p&gt;&lt;p&gt;	FILE500.eml&lt;/p&gt;&lt;p&gt;being the names of the files as stored in Emails.zip and Emails.db&lt;/p&gt;&lt;p&gt;The program then makes a folder in the same folder as the file 'WantedEmails.txt'&lt;/p&gt;&lt;p&gt;is found with the same name as this file: here 'WantedEmails'&lt;/p&gt;&lt;p&gt;It then writes the emails, keeping the order of the emails in the&lt;/p&gt;&lt;p&gt;'WantedEmails.txt'-file but renaming then as:&lt;/p&gt;&lt;p&gt;	FILE0001.eml&lt;/p&gt;&lt;p&gt;	FILE0002.eml&lt;/p&gt;&lt;p&gt;	FILE0003.eml &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </action>
+  <action name="actionSelect_Emails_with_SQL">
+   <property name="text">
+    <string>with SQL from file</string>
+   </property>
+  </action>
+  <action name="actionSQLite_Tutorial">
+   <property name="text">
+    <string>SQLite Tutorial</string>
+   </property>
+  </action>
+  <action name="actionSQL_examples">
+   <property name="text">
+    <string>SQL examples</string>
+   </property>
+  </action>
+  <action name="emails_from_today">
+   <property name="text">
+    <string>from today (all)</string>
+   </property>
+  </action>
+  <action name="emails_from_last_week">
+   <property name="text">
+    <string>from last week (all)</string>
+   </property>
+  </action>
+  <action name="emails_from_last_month">
+   <property name="text">
+    <string>from last month (all)</string>
+   </property>
+  </action>
+  <action name="actionwith_SQL">
+   <property name="text">
+    <string>with SQL</string>
+   </property>
+  </action>
+  <action name="actionfrom_today_no_spam">
+   <property name="text">
+    <string>from today (no spam)</string>
+   </property>
+  </action>
+  <action name="actionfrom_last_week_no_spam">
+   <property name="text">
+    <string>from last week (no spam)</string>
+   </property>
+  </action>
+  <action name="actionfrom_last_month_no_spam">
+   <property name="text">
+    <string>from last month (no spam)</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,2275 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\begin_preamble
+% DO NOT ALTER THIS PREAMBLE!!!
+%
+% This preamble is designed to ensure that the User's Guide prints
+% out as advertised. If you mess with this preamble,
+% parts of the User's Guide may not print out as expected.  If you
+% have problems LaTeXing this file, please contact 
+% the documentation team
+% email: lyx-docs@lists.lyx.org
+
+% for correct jump positions whe clicking on a link to a float
+\usepackage[figure]{hypcap}
+
+% the pages of the TOC is numbered roman
+% and a pdf-bookmark for the TOC is added
+\let\myTOC\tableofcontents
+\renewcommand\tableofcontents{%
+  \frontmatter
+  \pdfbookmark[1]{\contentsname}{}
+  \myTOC
+  \mainmatter }
+
+% macro for italic page numbers in the index
+\newcommand{\IndexDef}[1]{\textit{#1}}
+
+% for customized page headers/footers
+% only needed because they are only used in one section of the document
+\usepackage{fancyhdr}
+% change header rule width
+\renewcommand{\headrulewidth}{2pt}
+
+% used to have extra space in table cells
+\@ifundefined{extrarowheight}
+ {\usepackage{array}}{}
+\setlength{\extrarowheight}{2pt}
+
+% workaround for a makeindex bug,
+% see sec. "Index Entry Order"
+% only uncomment this when you are using makindex
+%\let\OrgIndex\index 
+%\renewcommand*{\index}[1]{\OrgIndex{#1}}
+\end_preamble
+\options refpage,intoc,bibliography=totoc,index=totoc,BCOR7.5mm,captions=tableheading
+\use_default_options false
+\begin_modules
+customHeadersFooters
+enumitem
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "lmss" "default"
+\font_typewriter "lmtt" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format pdf2
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_title "The LyX User's Guide"
+\pdf_author "LyX Team"
+\pdf_subject "LyX"
+\pdf_keywords "LyX"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue, pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\notefontcolor #0000ff
+\branch Question
+\selected 1
+\filename_suffix 0
+\color #00ff00
+\end_branch
+\branch Answer
+\selected 0
+\filename_suffix 0
+\color #aa55ff
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict true
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Emailmanager User's Guide
+\end_layout
+
+\begin_layout Author
+by Ferdi Ploeger
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Version 1.0
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+EmailManager organizes emails that are transferred from the server of the
+ internet service provider (ISP) to local media as local hard disks or CDRoms.
+ Thus the emails can be kept for years rather than that they are deleted
+ either by the ISP because the mailbox is full, the ISP goes bust or by
+ the user wanting to delete emails considering they are of no longer use.
+ 
+\end_layout
+
+\begin_layout Standard
+By deleting emails you are deleting your history.
+ Emails replaced letters as they were exchanged in earlier times.
+ Collected letters of friends, lovers or relations preserve your history
+ that you (or someone else) might want to recall later.
+ 
+\end_layout
+
+\begin_layout Standard
+But there might be more pressing needs to keep your emails: Amazon that
+ claims you to be a prime member at a monthly cost although you could prove
+ you stopped the membership, British Gas that claims you didn't answer their
+ claims you had to pay some outstanding bills or the Home Office that wants
+ to have 'proof' of having lived in the UK some 15 years ago.
+\end_layout
+
+\begin_layout Standard
+EmailManager keeps the emails as sent to you or sent by you.
+ This is including the images and the attachments.
+ When you display the preserved emails from the near past they look exactly
+ as they looked in your mail-browser.
+ You even can 'reply' or 'forward' them as if they were still on the server
+ of your ISP.
+ 
+\end_layout
+
+\begin_layout Standard
+Unfortunately (by now) the images will disappear over the years as they
+ are referred to images stored on the server of the ISP and will be deleted
+ over time.
+ But the text, addresses and attachments all remain.
+\end_layout
+
+\begin_layout Chapter
+Installation
+\end_layout
+
+\begin_layout Standard
+For EmailManager to work it needs to have three files and a subfolder together
+ in the same folder.
+ This folder can be on a local disk , an external disk or in a cloud.
+ The executable is EmailManager.exe
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+EmailManager.ui defines the layout of EmailManager and EmailManager.ico is
+ the icon used by the program
+\end_layout
+
+\end_inset
+
+.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Installed EmailManager"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout LyX-Code
+EmailManager.exe
+\end_layout
+
+\begin_layout LyX-Code
+EmailManager.ui
+\end_layout
+
+\begin_layout LyX-Code
+EmailManager.ico
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image7.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Installed EmailManager - files
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "Installed EmailManager"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The subfolder is EmailManagerHelp-folder with the files:
+\end_layout
+
+\begin_layout LyX-Code
+UserGuide.pdf
+\end_layout
+
+\begin_layout LyX-Code
+SQL-examples.pdf
+\end_layout
+
+\begin_layout LyX-Code
+SQLite Tutorial.pdf
+\end_layout
+
+\begin_layout LyX-Code
+About.pdf
+\end_layout
+
+\begin_layout Standard
+EmailManager will run in Windows by a double-click on the .exe-file or a
+ shortcut of the .exe-file (i.e.
+ a shortcut placed on the desktop or the status bar of Windows).
+ EmailManager doesn't need any more 'installation' rather then just put
+ these files in a folder and arrange a shortcut to invoke EmailManager.exe.
+ 
+\end_layout
+
+\begin_layout Standard
+Nevertheless it comes handy as there is a default program installed that
+ opens emails (.eml-files).
+ Also handy, but strictly not needed, is a program that can handle .zip-files
+ and a program that can handle a 
+\begin_inset CommandInset href
+LatexCommand href
+name "SQLite-database"
+target "https://www.sqlite.org/index.html"
+literal "false"
+
+\end_inset
+
+ such as 
+\begin_inset CommandInset href
+LatexCommand href
+name "SQLiteStudio"
+target "https://sqlitestudio.pl/index.rvt"
+literal "false"
+
+\end_inset
+
+ or 
+\begin_inset CommandInset href
+LatexCommand href
+name "DB Browser for SQLite"
+target "https://sqlitebrowser.org/"
+literal "false"
+
+\end_inset
+
+ (all free).
+\end_layout
+
+\begin_layout Standard
+When EmailManager runs for the first time it will create a folder 'C:/EmailManag
+er'.
+ In this folder it will write and maintain the two files:
+\end_layout
+
+\begin_layout LyX-Code
+PythonEmailManager.log
+\end_layout
+
+\begin_layout LyX-Code
+EmailManager.json
+\end_layout
+
+\begin_layout Standard
+Every time EmailManager starts it will read the file EmailManager.json to
+ find out what the 'default-folder' is.
+ EmailManager keeps an ongoing log of its activities in PythonEmailManager.log.
+\end_layout
+
+\begin_layout Standard
+These two files should be left untouched by means other than EmailManager
+ itself.
+ Deleting the files or changing its names results in new files being made
+ with the above names.
+ The content of both the .log and .json files can be seen and even changed
+ (don't do this unless you know very well what you are doing) in a simple
+ application as Windows Notepad, its working will be destroyed when viewed
+ in Windows WordPad or another text editor like LibreOffice and accidentally
+ saved.
+ 
+\end_layout
+
+\begin_layout Section
+Default Folder
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Default-Folder"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+EmailManager.log keeps track of the activities of EmailManager.
+ EmailManager.json remembers where the 'default-folder' is you put and keep
+ your emails, your Emails.zip and Emails.db.
+ The default folder is the folder (anywhere) where you save your 'raw' emails
+ (.eml-files).
+ These .eml-files are then processed
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Renaming goes in two steps: first all the .eml-files are renamed to TEMPFILE-xx-y
+y.eml, where xx is the number of restarts and yy is the number, starting
+ from the last archived FILEyy (in Emails.zip and Emails.db).
+ When all the .eml-files are thus renamed the second rename-action renames
+ all the TEMPFILE-xx-yy.eml's to FILEyy.eml's.
+ The value of yy (the last archived filenr) is kept in the file LocalEmailManage
+r.json and looks like: {"LastFileNr": 16037}.
+ It is extremely important to leave this file untouched because if this
+ file is not found a new file LocalEmailManager.json will be created with
+ content {"LastFileNr": 0}.
+ EmailManager will then rename new afdded files as FILE1.eml, FILE2.eml and
+ subsequent overwrite files with the same name in EmailManager.zip and EmailManan
+ger.db
+\end_layout
+
+\end_inset
+
+ by EmailManager.
+ When you perform a query on the database EmailManager will use the database
+ EmailManager.db in the default-folder.
+ When you want to display an email EmailManager will take the email from
+ EmailManager.zip in the default folder.
+ As EmailManager deals with certain files only it leaves other files untouched
+ so you can keep other files in this default folder as well.
+\end_layout
+
+\begin_layout Standard
+The files EmailManager deals with in the default folder are:
+\end_layout
+
+\begin_layout LyX-Code
+.eml-files
+\end_layout
+
+\begin_layout LyX-Code
+Emails.db
+\end_layout
+
+\begin_layout LyX-Code
+Emails.zip
+\end_layout
+
+\begin_layout LyX-Code
+localEmailManager.json
+\end_layout
+
+\begin_layout Standard
+The .eml-files are the 'raw' unprocessed emails as saved from your emailprogram.
+ Emails.db is the database which keeps the details of the emails including
+ the new name given to the email as it is stored in Emails.zip.
+ localEmailManager.json keeps the number of the last processed email
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Before they are zipped Emails are given the name FILExxx.eml, where xxx is
+ an increasing number.
+ After being zipped the original emails are deleted.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Different Default Folders
+\end_layout
+
+\begin_layout Standard
+It is possible to maintain more than one 'default folder'.
+ In case you want to work with a different 'default folder' you have to
+ let EmailManager know which 'default folder' you want EmailManager to deal
+ with.
+ This can be done with the menu-option 'Options/Set default folder'.
+ Until you change this 'default folder' again EmailManager will use this
+ new folder as the default folder, even after you restart the program.
+ EmailManager will create new files as given in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Default-Folder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+.
+\end_layout
+
+\begin_layout Chapter
+Organizing emails
+\end_layout
+
+\begin_layout Standard
+When using EmailManager one should choose a 
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Organizing-emails-default-folder"
+
+\end_inset
+
+'default-folder' (from the menu: 'Options | Set default folder'.
+ This folder should contain at least one .eml-file to start with.
+\end_layout
+
+\begin_layout Standard
+After choosing the above option from the menu the user will be confronted
+ with an OpenFileDialog that will see .eml-files only.
+ Initially when EmailManager is used for the first time, this will be the
+ 'C:/'-folder.
+ The user then should navigate to a folder where he/she intends to keep
+ its emails.
+ This folder might be on an internal or external disk with a complicated
+ path.
+ By clicking on any .eml-file in this folder this folder will be set as the
+ default folder.
+ When confronted with OpenFileDialogs from other menu-options EmailManager
+ will then always open in this folder.
+ (This folder-path will be preserved in 'C:/EmailManager/EmailManager.json).
+ 
+\end_layout
+
+\begin_layout Standard
+The aim of EmailManager is that all .eml-files to archive should be dumped
+ into this default folder.
+ Once you have written one or more emails to this folder from you email-program
+ your email program will suggest this folder in subsequent 'save-as' commands.
+\end_layout
+
+\begin_layout Standard
+Archiving of emails happens in EmailManager.zip created and maintained in
+ the default folder.
+ For each email the columns are (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "columns emails in SQLite Studio"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+):
+\end_layout
+
+\begin_layout LyX-Code
+date
+\end_layout
+
+\begin_layout LyX-Code
+time
+\end_layout
+
+\begin_layout LyX-Code
+timezone
+\end_layout
+
+\begin_layout LyX-Code
+sender
+\end_layout
+
+\begin_layout LyX-Code
+recipient
+\end_layout
+
+\begin_layout LyX-Code
+subject
+\end_layout
+
+\begin_layout LyX-Code
+cc's
+\end_layout
+
+\begin_layout LyX-Code
+bcc's 
+\end_layout
+
+\begin_layout LyX-Code
+spam-indication
+\end_layout
+
+\begin_layout LyX-Code
+size (in Mb)
+\end_layout
+
+\begin_layout LyX-Code
+FileName
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image8.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Columns in SQLite Studio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "columns emails in SQLite Studio"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+will be written in the Emails.db database.
+ In the same database a list of all the email-addresses that occurred in
+ the sender, recipients, cc's and bcc'c will be preserved (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "table addresses"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) with one relevant column address.
+ (the column 'count' is a dummy so is irrelevant).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image10.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+table addresses kept in Emails.db
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "table addresses"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Initially the emails will be saved by your email program as <subject>.eml.
+ EmailManager will rename these filenames to FILE1.eml, FILE2.eml, ...
+\end_layout
+
+\begin_layout Standard
+EmailManager keeps the name of the last renamed and archived email in the
+ file:
+\end_layout
+
+\begin_layout LyX-Code
+localEmailManager.json
+\end_layout
+
+\begin_layout Standard
+This file should be left untouched because otherwise EmailManager would
+ overwrite existing emails.
+\end_layout
+
+\begin_layout Standard
+To properly archive the emails as saved from your email program the user
+ should use the menu-option 'Actions | Archive Emails'.
+ EmailManager then will open in the default folder and show the emails written
+ there.
+ Any one of those emails should be clicked on followed by clicking 'Open'.
+ Clicking on 'Cancel' cancels the activity (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "open defaultfolder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename //PERSONALCLOUD-5/Public/Together/archive/PythonScripts/EmailManagerHelp/Lyx/pics/Image2.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+start archiving
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "open defaultfolder"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+EmailManager then will display what it is doing (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "finished archiving"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) and keeps track of its activities in its Log File (Options | Open LogFile).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename //PERSONALCLOUD-5/Public/Together/archive/PythonScripts/EmailManagerHelp/Lyx/pics/Image3.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+finished archiving
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "finished archiving"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Warning and reassurances
+\end_layout
+
+\begin_layout Standard
+In the 'default-folder' other files can be kept as .eml-files only.
+ This enables the user i.e.
+ to keep scans of letters sent by ordinary mail or other considered relevant
+ files.
+ EmailManager will archive .eml-files only and leave non-eml-files untouched.
+\end_layout
+
+\begin_layout Standard
+Be aware that EmailManager will also find, archive and delete .eml-files
+ in sub folders of the default folder.
+ This makes it possible to merge emails some of which might have the same
+ name.
+ As long as batches of emails kept in different subfolders of the default-folder
+ the renaming of these emails goes without problems.
+ After renaming the subfolders are still there but are empty and the emails
+ that were in these subfolders are now amongst the renamed emails (in Emails.zip
+ and Emails.db)
+\end_layout
+
+\begin_layout Standard
+The EmailManager program and its associated files can be stored anywhere
+ on remote or local harddisks.
+ EmailManager will work fine and fast (enough) on a very remote defaultfolder
+ for say up to batches of 500 emails.
+ EmailManager can manage hundreds of thousands emails but, when offered
+ a large amount of emails it works a factor 10 faster when it works on a
+ defaultfolder that is somewhere on the local harddisk.
+ After EmailManager processed all the thousands of emails al that remains
+ is an Email.db, Emails.zip en LocalEmailManager.json-file (together with other
+ files - that were not handled by EmailManager - stored by the user).
+ Then just move this folder to a more convenient and remote place (i.e.
+ a place that will be backupped in a regular scheme) and change the defaultfolde
+r in EmailManager (Optiond | Change defaultfolder) as such.
+\end_layout
+
+\begin_layout Chapter
+Retrieving emails
+\end_layout
+
+\begin_layout Standard
+The emails will be renamed to a simple filename (FILEn.eml, n=1, 2,..) and
+ compressed in the file Emails.zip in the default folder.
+ This Email.zip-file can be handles with zip-utilities as 
+\begin_inset CommandInset href
+LatexCommand href
+name "WinZip"
+target "https://www.winzip.com/win/en/"
+literal "false"
+
+\end_inset
+
+ (not free) or 
+\begin_inset CommandInset href
+LatexCommand href
+name "7Zip"
+target "https://www.7-zip.org/"
+literal "false"
+
+\end_inset
+
+ (free).
+ The files in Emails.zip can be clicked on to open them in the default mail-progr
+am.
+ From there these mails can be answered on or forwarded.
+ However the filename of the emails has been made meaningless so unless
+ you know which email you are looking for just clicking on an email in Emails.zip
+ is a random action.
+\end_layout
+
+\begin_layout Standard
+EmailManager offers several methods to find the email(s) you are looking
+ for.
+ You can look under the menu-option 'Get Emails' (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "retrieving emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+There are several pre-organised queries.
+ You can do the query including or excluding spam-emails
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+'spam' is a qualification assigned to the email by the provider, in this
+ case xs4all.
+ When the file is too bulky xs4all gives the spam the qualification 'Skipped,
+ message too large', so this email will be included in the 'no spam' selection.
+ Sometimes emails don't have a qualification 'spam', i.e.
+ emails sent by you before they are seen by xs4all.
+ In that case they appear in the result of the query as spam 'None'.
+\end_layout
+
+\end_inset
+
+.
+ The condition used for a query without spam-emails is:
+\end_layout
+
+\begin_layout LyX-Code
+(where spam <> 'YES' or spam IS NULL)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image1.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+retrieving emails
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "retrieving emails"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Get-emails-from-today"
+
+\end_inset
+
+Get emails from today
+\end_layout
+
+\begin_layout Standard
+The menu-option 'Get Emails | from today will display a list of emails that
+ are added to the EmailManager system today.
+ The list is sorted on the timestamp of the emails and standard displays
+ as shown in fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "retreived emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In case the way the table is shown doesn't satisfy, the columns can be adapted
+ as shown in fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "adapted layout"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ just by dragging the column boundaries with the mouse.
+\end_layout
+
+\begin_layout Standard
+Where a column-name 'fname' exists the email can be retrieved by clicking
+ on a filename: this will retrieve the email from the Emails.zip-file, store
+ it in the folder 'C:/EmailManagerResults' and display the email in the
+ default email program (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "display an email"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+The folder 'C:/EmailManagerResults' will be cleared before the results are
+ displayed in the table on screen and all the files picked from the table
+ on screen will be stored in this folder with the name it has been given
+ by EmailManager before it was compressed in Emails.zip.
+ These emails can be saved somewhere else at will or just be left to be
+ deleted once another selection is made.
+ 
+\end_layout
+
+\begin_layout Standard
+The retrieved emails stay in the file 'Emails.zip' and don't mingle with
+ the saved data so the integrity of the EmailManager data is preserved.
+\end_layout
+
+\begin_layout Standard
+The folder EmailManagerResults is used for the results of searches for 'Emails
+ of today', Emails of last week' and 'Emails of last month'.
+ The options 'Emails from list' and 'Emails with SQL' follow a different
+ procedure: see there.
+\end_layout
+
+\begin_layout Standard
+The email as displayed in fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "display an email"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ allows to reply on or to forward to other recipients.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Get-emails-from-last-week"
+
+\end_inset
+
+Get emails from last week
+\end_layout
+
+\begin_layout Standard
+The menu-option 'Get Emails | from last week' will display a list of emails
+ added tot the EmailManager system during last week.The list is sorted on
+ the date and timestamp of the emails and standard displays as shown in
+ fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "retreived emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Get-emails-from-last-month"
+
+\end_inset
+
+Get emails from last month
+\end_layout
+
+\begin_layout Standard
+The menu-option 'Get Emails | from last month' will display a list of emails
+ added to the EmailManager system during the previous 31 days.
+ The list is sorted on the date and timestamp of the emails and standard
+ displays as shown in fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "retreived emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image4.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+retrieved emails
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "retreived emails"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image5.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+emails shown in adapted layout
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "adapted layout"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image6.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+display an email
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "display an email"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Get emails from a list
+\end_layout
+
+\begin_layout Standard
+Retrieving emails from a list is asking EmailManager to read a textfile
+ with the filenames of the wanted emails.
+ This list can be assembled either by manually picking the filenames from
+ displays as given in tables of 'today', 'last week' or 'last month' writing
+ them in a .txt-file with i.e.
+ Windows NotePad or retrieving this list from a copy and paste action from
+ another application.
+\end_layout
+
+\begin_layout Standard
+The list given in the Example.txt file (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Example.txt"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) can be copied i.e.
+ from a SQL-search in SQLiteStudio (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "search in SQLiteStudio"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Example.txt gives the outcome of a search of all emails stored with 'Amsterdam'
+ somewhere in its subject.
+ The search found 116 emails.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image11.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+list of filenames in Example.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "Example.txt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image9.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+search in SQLietStudio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "search in SQLiteStudio"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although the list in Example.txt gives the filenames of the search with which
+ these emails are stored in Emails.zip the order (by date and time) of this
+ list doesn't show the filenames but from the place in the list of these
+ filenames.To keep this order these files should be renamed as FILE00001.eml,
+ FILE00002.eml, ..., FILE00116.eml and that is exactly what the program does
+ (see fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "new list of emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+EmailManager explains onscreen (and in its Log File) what it has done (see
+ fig 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "making a new folder with emails"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Firstly the user choose d to write Example.txt in its Downloads folder:
+ 'C:/users/ferdi/downloads/Example.txt'.
+ EmailManager uses the filename 'Example' of 'Example.txt' to create a new
+ folder 'Example'.
+ If such a folder already exists EmailManager will delete it with its contents.
+ Next it will extract aal the files with given filenames from Emails.zip
+ in the current 'defaultfolder': here '//personalcloud-5/Public/Together/Ferdi/D
+iversen/emails/Emails.zip'.
+ These files will be renamed FILE00001.eml, ..., FILE00116.eml following the
+ order given in 'Example.txt'.
+\end_layout
+
+\begin_layout Standard
+Unneccasry to state that thsi folder and/or these files can be manipulated
+ and searched further.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image12.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+new list of emails
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "new list of emails"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pics/Image13.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+making a new folder with emails
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "making a new folder with emails"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+get emails with SQL
+\end_layout
+
+\begin_layout Standard
+SQL (pronounced "ess-que-el") stands for Structured Query Language.
+ SQL is used to communicate with a database.
+ According to ANSI (American National Standards Institute), it is the standard
+ language for relational database management systems.
+\end_layout
+
+\begin_layout Standard
+SQL (Structured Query Language) is a database management language for relational
+ databases.
+ SQL itself is not a programming language, but its standard allows creating
+ procedural extensions for it, which extend it to functionality of a mature
+ programming language.
+\end_layout
+
+\begin_layout Standard
+So, SQL is not a programming language, it's a query language.
+ The primary objective where SQL was created was to give the possibility
+ to common people get interested data from database.
+ ...
+ So once you learn SQL it should be similar to work across any relational
+ databases.
+\end_layout
+
+\begin_layout Standard
+EmailManager uses intern SQL-statements to retrieve the emails 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Get-emails-from-today"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Get-emails-from-last-week"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Get-emails-from-last-month"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ For these options the SQL-statements are 'hidden' for the user.
+\end_layout
+
+\begin_layout Standard
+Two other options are offered: to execute SQL-statements 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Read-SQL-from-file"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and to 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Adapt-basic-SQL-statement"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ within the program.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Read-SQL-from-file"
+
+\end_inset
+
+Read SQL from a file
+\end_layout
+
+\begin_layout Standard
+A SQL-file is a text-file that can be composed in simple text-editors like
+ MSWindows NotePad.
+ The file should be saved with the extension .SQL (rather then .txt), i.e.
+ 'FILE.SQL', anywhere on your disks.
+\end_layout
+
+\begin_layout Standard
+The file should contain a valid SQL-statement.
+ 'Valid' means it can execute the statement using the EmailManager.db in
+ the 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Organizing-emails-default-folder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+It is possible to have more than one folder in which emails are stored
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+EmailManager will display the emails found as a result of the SQL-statement
+ in the FILE.SQL.
+ The result should contain at least the column 'fname'.
+\end_layout
+
+\begin_layout Standard
+When clicked on one of the results under fname the email will be displayed
+ and the email (email.eml) will be written in a folder that was created bij
+ EmailManager in the same folder where FILE.SQL was found.
+ This folder will have the same name as the SQL-file.
+ So, when the SQL-file has the name 'EXAMPLE1.SQL' EmailManager will create
+ a folder 'EXAMPLE1'.
+ Before EmailManager starts writing these emails it tries to delete a possible
+ folder of the same name.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Adapt-basic-SQL-statement"
+
+\end_inset
+
+Adapt basic SQL-statement
+\end_layout
+
+\begin_layout Standard
+EmailManager offers the option to adapt a basic SQL-statement.
+ This option is under Get Emails | with SQL.
+\end_layout
+
+\begin_layout Standard
+The user will then be confronted with an editor and a basic extendable SQL-state
+ment:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/Image17.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This statement can then be adapted as one wishes.
+ The OK-button makes EmailManager try to execute the statement, the Cancel
+ button cancelles the request.
+\end_layout
+
+\begin_layout Standard
+EmailManager gives feedback in case of 'No records found' or in case of
+ a syntax error:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/Image18.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the SQL-statement leads to results, any email that is asked to be displayed
+ will be written in the folder C:/EMAILManagerResults as an .eml-file under
+ the name it was stored in the EmailManager.zip-file, so something like FILE17568.
+eml.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/Image19.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Notes on search criteria
+\end_layout
+
+\begin_layout Subsubsection
+Using quotes
+\end_layout
+
+\begin_layout Standard
+Search criteria, other the numbers, should be placed between parenthesises,
+ so
+\end_layout
+
+\begin_layout LyX-Code
+WHERE date = '2020-06-03'
+\end_layout
+
+\begin_layout Standard
+gives emails with matching dates '2020-06-03'
+\end_layout
+
+\begin_layout Standard
+When the 'LIKE' clause is used the extra '%' should be put between the quotes:
+\end_layout
+
+\begin_layout LyX-Code
+WHERE date LIKE '%2020-06%'
+\end_layout
+
+\begin_layout Standard
+gives all the emails from June 2020
+\end_layout
+
+\begin_layout Subsubsection
+Use of space
+\end_layout
+
+\begin_layout Standard
+The use of space has no meaning in SQL, so
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails
+\end_layout
+
+\begin_layout Standard
+is equivalent with
+\end_layout
+
+\begin_layout LyX-Code
+SELECT
+\end_layout
+
+\begin_layout LyX-Code
+*
+\end_layout
+
+\begin_layout LyX-Code
+FROM emails
+\end_layout
+
+\begin_layout Subsubsection
+Upper case or Lower case
+\end_layout
+
+\begin_layout Standard
+SQL doesn't distinguish between uppercase or lowercase.
+ So the SQL:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails
+\end_layout
+
+\begin_layout LyX-Code
+WHERE
+\end_layout
+
+\begin_layout LyX-Code
+subject = 'Amsterdam'
+\end_layout
+
+\begin_layout Standard
+is equivalent with:
+\end_layout
+
+\begin_layout LyX-Code
+SeLeCt * FROM Emails
+\end_layout
+
+\begin_layout LyX-Code
+WHeRE
+\end_layout
+
+\begin_layout LyX-Code
+subjeCt = 'AMSTErDAM'
+\end_layout
+
+\begin_layout Subsubsection
+Selecting specific columns of the emails
+\end_layout
+
+\begin_layout Standard
+With 
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails
+\end_layout
+
+\begin_layout Standard
+you ask for all columns in the emails.
+ 
+\end_layout
+
+\begin_layout Standard
+You can change the * with specific colums, like:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT date, time, sender, subject, FName FROM emails
+\end_layout
+
+\begin_layout Standard
+which will give just the specified columns as output.
+\end_layout
+
+\begin_layout Standard
+However when FName is missing the SQL-editor will display a message that
+ 'FName is missing'.
+ It is only clicking on one of the FName's that will display the email as
+ it is stored.
+\end_layout
+
+\begin_layout Subsubsection
+Number of 'WHERE'-clauses
+\end_layout
+
+\begin_layout Standard
+There is no limit on the 'WHERE'-clauses, so you can add or delete them
+ from the rump-SQL at will.
+ However be aware that these clauses should be connected with 'AND's and
+ 'OR's
+\end_layout
+
+\begin_layout Subsubsection
+Difference between '=' and LIKE
+\end_layout
+
+\begin_layout Standard
+A search criterium with '=' expects the criterium exactly being met (apart
+ from uppercase and lowercase).
+ So the statement:
+\end_layout
+
+\begin_layout LyX-Code
+WHERE subject = 'Amsterdam'
+\end_layout
+
+\begin_layout Standard
+will return records wich subject is exactly 'Amsterdam' and ignores subjects
+ like 'Amsterdam ' (i.e.
+ extra space).
+ 
+\end_layout
+
+\begin_layout Standard
+A search criterium 'LIKE' is being met when part of the subject matches
+ the criterium, so:
+\end_layout
+
+\begin_layout LyX-Code
+WHERE subject LIKE '%Amsterd%'
+\end_layout
+
+\begin_layout Standard
+finds subjects like 'Amsterdam', 'Amsterdam Centraal', 'from Amsterdam',
+ and so on.
+\end_layout
+
+\begin_layout Standard
+It is of course possible to give the search criterium in more complex statements
+: (take care of the right use of parenthesises)
+\end_layout
+
+\begin_layout LyX-Code
+WHERE subject LIKE '%Amst%' AND 
+\end_layout
+
+\begin_layout LyX-Code
+(subject LIKE '%Centraal%' OR subject LIKE '%CS%')
+\end_layout
+
+\begin_layout Standard
+This will give emails with 'Amsterdam CS' and 'Amsterdam Centraal'
+\end_layout
+
+\begin_layout Subsubsection
+Occurences of 'None' or 'Invalid'
+\end_layout
+
+\begin_layout Standard
+Although 99% of the emails have all columns present, some emails are being
+ sent without all of them them.
+ An email without date (time, timezone, sender, \SpecialChar ldots
+) or with an invalid date
+ can be found with:
+\end_layout
+
+\begin_layout LyX-Code
+WHERE date = 'None' OR date = 'Invalid'
+\end_layout
+
+\begin_layout Chapter
+Why is SQL the most important skill to learn?
+\end_layout
+
+\begin_layout Standard
+SQL (Structured Query Language) is the primary language responsible for
+ managing data held in a relational database management system (RDBMS),
+ or for stream processing in a relational data stream management system
+ (RDSMS).
+\end_layout
+
+\begin_layout Standard
+Simply put, SQL is the language you use to interact with a database.
+\end_layout
+
+\begin_layout Section
+Why it’s important to learn SQL?
+\end_layout
+
+\begin_layout Subsection
+SQL is the most universal and common used database language.
+\end_layout
+
+\begin_layout Standard
+We live in an era where data is the most valuable asset and it’s being put
+ at heart of every decision making process.
+ Despite of the explosion of NoSQL in the recent years, SQL is still making
+ its way back to become the universal interface for data analysis once again.
+\end_layout
+
+\begin_layout Standard
+It powers the most commonly used database engines like MySQL, SQL Server,
+ SQLite, and PostgreSQL:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/most-popular-db.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The most popular databases.
+ Source: StackOverflow Developer Survey Results 2017
+\end_layout
+
+\begin_layout Standard
+It’s not something surprising as SQL is particularly effective at data manipulat
+ion.
+ You can be able to see the exact data and the way it works then data testing
+ and manipulating will be done faster.
+ Evenmore, the data stored in a relational database is dynamic, which means
+ it can be queried, modified, and manipulated easily with some basic SQL
+ queries.
+\end_layout
+
+\begin_layout Standard
+If you want to access databases then yes, you need to know SQL.
+\end_layout
+
+\begin_layout Subsection
+It is not really difficult to learn SQL.
+\end_layout
+
+\begin_layout Standard
+SQL is not a programming language, it’s a query language.
+ The primary objective where SQL was created was to give the possibility
+ to common people get interested data from database.
+ It is also an English like language so anyone who can use English at a
+ basic level can write SQL query easily.
+\end_layout
+
+\begin_layout Standard
+The good news is that most DB engines are compatible with all SQL code.
+ So once you learn SQL it should be similar to work across any relational
+ databases.
+\end_layout
+
+\begin_layout Subsection
+SQL is one of the most sought-after skills by hiring employers.
+\end_layout
+
+\begin_layout Standard
+Let’s take a look at some actual numbers from the job market:
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+On Indeed.com:
+\end_layout
+
+\begin_layout Itemize
+There are 149,124 developer jobs in total (at the moment I did this quick
+ research, Aug 8).
+ 
+\end_layout
+
+\begin_layout Itemize
+Out of that number, there are 105,146 job listings that are either hiring
+ SQL Developers or having SQL as a required skill.
+ 
+\end_layout
+
+\begin_layout Itemize
+There are 35,306 SQL Developer jobs.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+On Stackoverflow:
+\end_layout
+
+\begin_layout Standard
+SQL is among the most popular languages across web developers, desktop developer
+s, sysadmins/DevOps, and data scientists:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/most-popular-language.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It’s easy to understand as all companies no matter which industry they are
+ in, they all rely on data and need to organize and understand the information
+ in a relevant way.
+ Chances are, they are going to encounter SQL databases, a lot.
+ So they are always going to need a database professional.
+\end_layout
+
+\begin_layout Section
+Examples of EmailManager and SQL
+\end_layout
+
+\begin_layout Standard
+When offered a textfile with SQL-statements given as 'Example.sql', so with
+ an extension .sql, EmailManager will try to apply this SQL-statement to
+ 'Emails.db' in the default folder.
+\end_layout
+
+\begin_layout Standard
+The file Example.sql can be put anywhere Emailmanager will always use the
+ right Emails.db bfrom the defaultfolder.
+\end_layout
+
+\begin_layout Standard
+It is possible that the file Example.sql hase errors: in that case EmailManager
+ cannot solve the SQL-search and will display its discontent on screen,
+ although it will not show what the error was.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/Image14.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because SQL is simple it is not difficult to spot the error: the semicolon
+ after 'date' should be a comma.
+ After replacing the semicolon with a comma and try it again, EmailManager
+ will display:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename pics/Image16.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+being the same list as was used in 'Emails from a list'.
+ Of course if the select statement was extended like:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails
+\end_layout
+
+\begin_layout Standard
+All the columns of the table Emails would be shown.
+\end_layout
+
+\begin_layout Standard
+Clicking on a filename (fname) will display the email and simultaneously
+ write this email in the folder Example, being a subfolder of the folder
+ where Example.sql was written in.
+\end_layout
+
+\begin_layout Subsubsection
+Examples of sql
+\end_layout
+
+\begin_layout Standard
+There are only 2 tables in Emails.db: 'emails' and 'addresses'.
+\end_layout
+
+\begin_layout Standard
+The table addresses has two relevant
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+the column 'count' is not relevant and has always value 1
+\end_layout
+
+\end_inset
+
+ 'columns': address and spam.
+ This table collect all email-addresses EmailManager one found in emails
+ and adds the column 'spam' about this address was encountered in a spam-message.
+\end_layout
+
+\begin_layout Standard
+A simple query could be:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM addresses WHERE address LIKE '%.ru%'
+\end_layout
+
+\begin_layout Standard
+thus finding all the email-addresses once used that obviously came from
+ Russia (.ru).
+\end_layout
+
+\begin_layout Standard
+The other table - the more relevant one - is emails.
+\end_layout
+
+\begin_layout Standard
+The table emails has the relevant columns: date, time, timezone, sender,
+ subject, spam, fname, fsize, to, cc and bcc.
+\end_layout
+
+\begin_layout Standard
+In analogy of the above search you can do a search on emails sent from Russia:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails WHERE sender LIKE '%.ru%'
+\end_layout
+
+\begin_layout Standard
+You can add more attributes like:
+\end_layout
+
+\begin_layout LyX-Code
+SELECT * FROM emails WHERE sender LIKE '%.ru%'
+\end_layout
+
+\begin_layout LyX-Code
+and date > '2020'
+\end_layout
+
+\begin_layout LyX-Code
+and spam = 'YES'
+\end_layout
+
+\begin_layout LyX-Code
+order by date, time
+\end_layout
+
+\end_body
+\end_document
