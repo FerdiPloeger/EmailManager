@@ -71,26 +71,7 @@ class EmailManager():
 
         """
 
-        # init defaults by reading 'c:/EmailManager/EmailManager.json'
-        try:
-            with open(EmailManagerStartFolder+'/EmailManager.json', 'r') as file:
-                self.defaults = json.load(file)
-        except:
-            try:
-                os.mkdir(EmailManagerStartFolder)
-            except:
-                pass
-            self.defaults = {'DefaultFolder':'C:/', 'NrOfRestarts':1}
-
-            with open(EmailManagerStartFolder+'/EmailManager.json', 'w') as file:
-                json.dump(self.defaults, file)
-
-
         self.dlg = dlg
-
-        self.LogEntry()
-        self.LogEntry('started EmailManager version ' + version)
-
         self.dlg.listWidget.hide()
         self.dlg.closeButton.hide()
         self.dlg.CSVButton.hide()
@@ -99,6 +80,31 @@ class EmailManager():
         self.dlg.OKButton.hide()
         self.dlg.cancelButton.hide()
         # see : https://pythonspot.com/pyqt5-table/
+
+        # init defaults by reading 'c:/EmailManager/EmailManager.json'
+        # if there isn't one create one
+        try:
+            with open(EmailManagerStartFolder+'/EmailManager.json', 'r') as file:
+                self.defaults = json.load(file)
+        except:
+            try:
+                os.mkdir(EmailManagerStartFolder)
+            except:   
+                self.LogEntry("{} did't exist, so I created a new one". 
+                              format(EmailManagerStartFolder))
+                pass
+            self.defaults = {'DefaultFolder':'C:/', 'NrOfRestarts':1}
+
+            with open(EmailManagerStartFolder+'/EmailManager.json', 'w') as file:
+                json.dump(self.defaults, file)
+            self.LogEntry('Created a new {}'.format('EmailManager.json'))
+
+        self.LogEntry()
+        self.LogEntry('started EmailManager version ' + version)
+        self.LogEntry('The defaultfolder is {}'.format(self.defaults['DefaultFolder']))
+
+
+
 
 
 
@@ -143,6 +149,16 @@ class EmailManager():
         """
         renames all files with given extension in rootdir and its subfolders
         to a series FILE1.ext, FILE2.ext, FILE3.ext, ...
+        
+        This happens in two steps:
+        first all the files are renumbered to TEMPFILExx-yy.eml, where
+        xx is the number of restarts of a renaming session and
+        yy is a sequence number (1,2, ...)
+        This 'xx' is to prevent that, in case of a crash of the program, part of
+        the files would be renamed to filenames that are already there.
+        In the second run all the tempfiles are renamed to FILEyy.eml
+        Here 'yy' are numbers folowing the last added filenumber, this to prevent
+        overwriting .eml-s in the Emails.zip and Emails.db
         """
 
         files = self.GetAllFiles(rootdir)
@@ -406,7 +422,7 @@ class EmailManager():
         self.dlg.textEdit.hide()
         self.dlg.OKButton.hide()
         self.dlg.cancelButton.hide()
-        self.LogEntry('closed screens')
+        #self.LogEntry('closed screens, in case they were open')
 
 
 
@@ -728,44 +744,62 @@ class EmailManager():
         SQLstatements = self.sql
         EmailDBFName = self.defaults['DefaultFolder'] + \
               constants['EmailDBFName']
-        con = sqlite3.connect(EmailDBFName)
-        cur = con.cursor()
-        ResultsFolder = constants['DefaultResults']
-        self.defaults['ResultsFolder'] = ResultsFolder
-        shutil.rmtree(ResultsFolder, ignore_errors=True)
-        msg = 'Deleted folder ' + ResultsFolder + ' (if existed)'
-        self.LogEntry(msg)
-
 
         try:
-            cur.execute(SQLstatements)
-            names = list(map(lambda x: x[0], cur.description))
-            rows = cur.fetchall()
-
-            rowcount = len(rows)
-            self.LogEntry(str(rowcount) + ' records found')
-            columncount = len(rows[0])
-            self.HideWidgets()
-            self.dlg.tableWidget.setRowCount(rowcount)
-            self.dlg.tableWidget.setColumnCount(columncount)
-            self.dlg.tableWidget.setHorizontalHeaderLabels(names)
-
-            self.dlg.tableWidget.show()
-            self.dlg.closeButton.show()
-            self.dlg.CSVButton.hide()
-
-            for rw in range(rowcount):
-                row = rows[rw]
-                for cl in range(columncount):
-                    item = row[cl]
-                    self.dlg.tableWidget.setItem(rw, cl, \
-                        QTableWidgetItem(str(item)))
-
-            self.LogEntry('SQL-statements executed')
+            con = sqlite3.connect(EmailDBFName)
+            could_connect_database = True
         except:
-            self.LogEntry('SQL-statements NOT executed or no records found')
-
-        con.close()
+            could_connect_database = False
+            
+        
+        if could_connect_database:
+            cur = con.cursor()
+            ResultsFolder = constants['DefaultResults']
+            self.defaults['ResultsFolder'] = ResultsFolder
+            shutil.rmtree(ResultsFolder, ignore_errors=True)
+            msg = 'Deleted folder ' + ResultsFolder + ' (if existed)'
+            self.LogEntry(msg)
+    
+            try:
+                cur.execute(SQLstatements)
+                names = list(map(lambda x: x[0], cur.description))
+                rows = cur.fetchall()
+    
+                rowcount = len(rows)
+                self.LogEntry(str(rowcount) + ' records found')
+                columncount = len(rows[0])
+                self.HideWidgets()
+                self.dlg.tableWidget.setRowCount(rowcount)
+                self.dlg.tableWidget.setColumnCount(columncount)
+                self.dlg.tableWidget.setHorizontalHeaderLabels(names)
+    
+                self.dlg.tableWidget.show()
+                self.dlg.closeButton.show()
+                self.dlg.CSVButton.hide()
+    
+                for rw in range(rowcount):
+                    row = rows[rw]
+                    for cl in range(columncount):
+                        item = row[cl]
+                        self.dlg.tableWidget.setItem(rw, cl, \
+                            QTableWidgetItem(str(item)))
+    
+                self.LogEntry('SQL-statements executed')
+            except:
+                self.LogEntry('SQL-statements NOT executed or no records found')
+    
+            con.close()
+        else:
+            self.LogEntry()
+            self.LogEntry('* * * * * * * * * * W A R N I N G * * * * * * * * * * * ')
+            self.LogEntry('Could not (yet?) open the database {}'.format(EmailDBFName))
+            self.LogEntry('Maybe emails should be added for the first time')
+            self.LogEntry('Probably you have not yet assigned a default-folder')
+            self.LogEntry('This cannot be the c:/-folder')
+            self.LogFile()
+            rowcount = 0
+            
+        return rowcount
 
 
 
@@ -785,10 +819,10 @@ class EmailManager():
         self.sql = sql.format(today, month_ago)
 
         self.OutFName = today +', last month.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed all emails of last month (" + month_ago +"  -  " \
-                      +today+')')
+        self.LogEntry("Showed all {} emails of last month ({} - {})".
+                      format(rowcount, month_ago, today))
 
 
 
@@ -803,9 +837,10 @@ class EmailManager():
         self.sql = sql.format(today,)
 
         self.OutFName = today +', today.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed all emails from today ({})".format(today))
+        self.LogEntry("Showed all {} emails from today ({})".
+                      format(rowcount, today))
 
 
 
@@ -824,10 +859,10 @@ class EmailManager():
         self.sql = sql.format(today, week_ago)
 
         self.OutFName = today +', last week.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed all emails of last week ({} - {})" \
-                      .format(week_ago, today))
+        self.LogEntry("Showed all {} emails of last week ({} - {})".
+                      format(rowcount, week_ago, today))
 
 
 
@@ -846,9 +881,10 @@ class EmailManager():
         self.sql = sql.format(today,)
 
         self.OutFName = today +', today.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed emails from today ({}), spam excluded".format(today))
+        self.LogEntry("Showed {} emails from today ({}) (spam excluded)".
+                      format(rowcount, today))
 
 
 
@@ -869,10 +905,10 @@ class EmailManager():
         self.sql = sql.format(today, week_ago)
 
         self.OutFName = today +', last week.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed emails of last week ({} - {}), spam excluded" \
-                      .format(week_ago, today))
+        self.LogEntry("Showed {} emails of last week ({} - {}) (spam excluded)".
+                      format(rowcount, week_ago, today))
 
 
 
@@ -893,10 +929,10 @@ class EmailManager():
         self.sql = sql.format(today, month_ago)
 
         self.OutFName = today +', last month.csv'
-        self.exec_SQL()
+        rowcount = self.exec_SQL()
         self.dlg.CSVButton.hide()
-        self.LogEntry("Showed emails of last month (" + month_ago +"  -  " \
-                      +today+'), spam excluded')
+        self.LogEntry("Showed {} emails of last month ({} - {}) (spam excluded)". 
+                      format(rowcount, month_ago, today))
 
 
 
@@ -955,16 +991,16 @@ class EmailManager():
         dlg.textEdit.append(
             """/* Modify this rump SQL-statement */
 
-            SELECT *
-              FROM emails
-             WHERE sender LIKE '%---%' AND
-                   receiver LIKE '%---%' AND
-                   subject LIKE '%---%' AND
-                   (spam <> 'YES' OR spam IS NULL) AND
-                   date >= '{}' AND
-                   date <= '{}'
-             ORDER BY date,
-                      time;
+        SELECT *
+          FROM emails
+         WHERE sender LIKE '%---%' AND
+               receiver LIKE '%---%' AND
+               subject LIKE '%---%' AND
+               (spam <> 'YES' OR spam IS NULL) AND
+               date >= '{}' AND
+               date <= '{}'
+         ORDER BY date,
+                  time;
 
             """.format(today, today))
         self.showTextEdit()
@@ -1031,6 +1067,7 @@ class EmailManager():
         #     dlg.textEdit.append(
         #         '\n /* SQL statement contains errors or has no results*/')
         con.close()
+        return rowcount
 
 
 
